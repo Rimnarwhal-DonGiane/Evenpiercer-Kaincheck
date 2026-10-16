@@ -18,3 +18,5 @@ dist/.openai/
 !.env.example
 *.pem
 *.key
+
+supabase/.temp/

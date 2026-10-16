@@ -1,0 +1,15 @@
+{
+  "name": "evenpiercer-kaincheck",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build:vendor": "esbuild scripts/supabase-browser.js --bundle --platform=browser --format=iife --global-name=KaincheckSupabase --outfile=dist/vendor/supabase.min.js --minify --legal-comments=linked",
+    "build": "npm run build:vendor"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.118.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  }
+}
