@@ -1,5 +1,5 @@
 'use strict';
-const CACHE_NAME='kaincheck-shell-6b702ccb5ea6';
+const CACHE_NAME='kaincheck-shell-7fe6ea5bcaf5';
 const SHELL_FILES=['./','index.html','app.css','app.js','account.js','vendor/supabase.min.js','supabase-config.js','food-checker.js','pwa.js','personalization.js','manifest.webmanifest','icons/icon-192.png','icons/icon-512.png','icons/icon-maskable-512.png','icons/apple-touch-icon.png','install-qr.png'];
 const SHELL_URLS=new Set(SHELL_FILES.map(path=>new URL(path,self.registration.scope).href));
 async function isShellResponse(response,url){if(!response.ok||response.redirected||response.type==='opaque'||response.type==='opaqueredirect')return false;const actual=new URL(response.url||url);if(actual.origin!==self.location.origin)return false;const type=response.headers.get('content-type')||'';const path=new URL(url).pathname;if(path.endsWith('.js'))return /javascript/.test(type);if(path.endsWith('.css'))return /text\/css/.test(type);if(path.endsWith('.png'))return /image\/png/.test(type);if(path.endsWith('.webmanifest'))return /json|manifest/.test(type);if(!/text\/html/.test(type))return false;const html=await response.clone().text();return html.includes('<main class="stage">')&&html.includes('id="app"');}

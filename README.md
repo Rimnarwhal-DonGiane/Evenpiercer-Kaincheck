@@ -14,7 +14,7 @@ KainCheck is a mobile wellness app prototype with Filipino food logging, flexibl
 - One AI coach menu for choosing and customizing coaches. Six built-in coaches and saved custom characters keep separate chats and preferences.
 - Character prompts, biography, appearance, avatar uploads, model/proxy settings, sampling controls, and a default 16K estimated context budget.
 - Refresh the latest AI response or retry a failed reply without duplicating the user's message.
-- Real Supabase email/password registration, email confirmation, sign-in, persistent sessions, and logout. Profiles, food logs, plans, coach appearances and conversations sync to the signed-in account. Guest browsing remains local.
+- Google registration/sign-in through Supabase using PKCE, persistent sessions, and logout. The app flow is implemented; live Google login awaits Google OAuth credentials in the Supabase provider panel. Profiles, food logs, plans, coach appearances and conversations sync to the signed-in account. Guest browsing remains local.
 - Android/iPhone home-screen installation with a manifest, icons and a service worker. Only static app files are cached.
 
 ## Run locally
@@ -25,7 +25,7 @@ Serve the editable `dist/` files:
 python -m http.server 4174 --bind 127.0.0.1 --directory dist
 ```
 
-Open http://127.0.0.1:4174/. Sign in to an existing online account or continue as a guest. Registration confirmation returns to the hosted app. Guest data stays in this browser. Cloud accounts keep a device cache for offline use; protect browser access on shared devices.
+Open http://127.0.0.1:4174/. Sign in to an existing online account or continue as a guest. Google sign-in returns to the hosted app. Guest data stays in this browser. Cloud accounts keep a device cache for offline use; protect browser access on shared devices.
 
 ## Build for the current hosting service
 
@@ -52,12 +52,14 @@ Live replies depend on the provider's access rules, account status, model suppor
 
 ## Real online accounts
 
+**Google activation pending:** Supabase → Authentication → Sign In / Providers → Google currently has no Client ID or Client Secret and is disabled. Configure a Google Cloud Web OAuth client and save those credentials in Supabase; do not put the Client Secret in this repository. No SMTP setup is needed for the chosen Google flow.
+
 Connected to **KainCheck** (`agttxkpvcesiiwqrjsze`) in **Evenpiercer**. The browser configuration is `dist/supabase-config.js`; it contains only the project URL and publishable key. The owner-only `kaincheck_user_state` table stores app state as JSON with optimistic revisions. RLS restricts SELECT, INSERT and UPDATE to `auth.uid() = user_id`; anonymous access is revoked. No service-role key is used.
 
 Cloud saves are debounced. Failed saves remain queued on the device; reconnect or choose Retry cloud sync in Profile. If another device has newer data, the app stops writing and offers Use cloud version, retaining the unsynced device copy as a browser-storage backup. Reopen/sign in on a second device to load the latest cloud state. This version does not provide live multi-device merging.
 
-Existing local demo accounts are not converted to Supabase accounts. Register an online account separately; existing guest/demo profiles and chats are not uploaded automatically. AI API keys stay in tab memory or the existing private hosting secret, outside the cloud profile record.
+Existing local demo accounts are not converted to Supabase accounts. Your first Google sign-in creates an online account; existing guest/demo profiles and chats are not uploaded automatically. AI API keys stay in tab memory or the existing private hosting secret, outside the cloud profile record.
 
-See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for the applied migration, dashboard settings and remaining email-delivery verification. The existing owner-private Site access gate is separate from Supabase login. Other people cannot open this Site until its hosting audience is explicitly changed.
+See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for the applied migration, dashboard settings and Google provider activation and remaining live consent verification. The existing owner-private Site access gate is separate from Supabase login. Other people cannot open this Site until its hosting audience is explicitly changed.
 
 Nutrition, prices, weekly history and calorie targets in this prototype are illustrative estimates. Platinum ++ billing is simulated; no payments are collected.
