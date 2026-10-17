@@ -4,14 +4,15 @@ KainCheck is a mobile wellness app prototype with Filipino food logging, flexibl
 
 - Source: https://github.com/Rimnarwhal-DonGiane/Evenpiercer-Kaincheck
 - Hosted app: https://kaincheck-mobile-demo-ginoki.snowydrake.chatgpt.site/
+- AI and food update: [OpenAI & food checks](AI_AND_FOOD_SETUP.md)
 - Backend setup: [Connect Supabase](SUPABASE_SETUP.md)
 
 ## Current features
 
 - Username, profile picture, gender, pronouns and bio.
 - Meal logging, editable portions, nutrient estimates, water and movement logs, daily plans, and an All around movement option.
-- Photo capture/upload with a clearly labeled preset demo and optional vision-model analysis. Review and confirm items before logging.
-- One AI coach menu for choosing and customizing coaches. Six built-in coaches and saved custom characters keep separate chats and preferences.
+- ChatGPT food-photo recognition, source-aware portion review, sodium and three-serving cautions, custom vision providers, and a clearly labeled preset demo.
+- Six built-in coaches share server-side OpenAI coaching and keep separate personalities/chats; each can switch to Offline demo. Custom characters keep their own provider settings.
 - Character prompts, biography, appearance, avatar uploads, model/proxy settings, sampling controls, and a default 16K estimated context budget.
 - Refresh the latest AI response or retry a failed reply without duplicating the user's message.
 - Google registration/sign-in through Supabase using PKCE, persistent sessions, and logout. The app flow is implemented; live Google login awaits Google OAuth credentials in the Supabase provider panel. Profiles, food logs, plans, coach appearances and conversations sync to the signed-in account. Guest browsing remains local.
@@ -22,7 +23,8 @@ KainCheck is a mobile wellness app prototype with Filipino food logging, flexibl
 Serve the editable `dist/` files:
 
 ```sh
-python -m http.server 4174 --bind 127.0.0.1 --directory dist
+python scripts/build-worker.py
+node scripts/preview.mjs
 ```
 
 Open http://127.0.0.1:4174/. Sign in to an existing online account or continue as a guest. Google sign-in returns to the hosted app. Guest data stays in this browser. Cloud accounts keep a device cache for offline use; protect browser access on shared devices.
@@ -44,7 +46,7 @@ GitHub stores the project source. Publishing a GitHub commit does not automatica
 
 ## AI connections
 
-Built-in KainCheck coaches use offline example replies. Custom AI uses the configured chat-completions provider. The Pawan preset uses `https://api.pawan.krd/v1/chat/completions` and `pkrd/cosmosrp-2.1`.
+Built-in coaches use the private OpenAI endpoint with a shared hosted key; Offline demo is an explicit alternative. Custom AI uses the configured chat-completions provider. The Pawan preset uses `https://api.pawan.krd/v1/chat/completions` and `pkrd/cosmosrp-2.1`.
 
 The existing owner-private hosted app keeps its configured Pawan key in the runtime secret `PKRD_API_KEY`. At the owner's request, its same-origin, non-cacheable configuration endpoint fills a masked password field, and the browser sends requests directly to Pawan. The real key is not in this repository, browser profile storage, the service-worker cache or the offline export. User-entered keys stay in tab memory. Keep the hosting access boundary intact when changing this behavior.
 
@@ -62,4 +64,4 @@ Existing local demo accounts are not converted to Supabase accounts. Your first 
 
 See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for the applied migration, dashboard settings and Google provider activation and remaining live consent verification. The existing owner-private Site access gate is separate from Supabase login. Other people cannot open this Site until its hosting audience is explicitly changed.
 
-Nutrition, prices, weekly history and calorie targets in this prototype are illustrative estimates. Platinum ++ billing is simulated; no payments are collected.
+Nutrition uses the exact selected reference variant where available; missing values stay unknown. Photos cannot measure nutrient composition. Prices, weekly history and calorie targets elsewhere in this prototype remain illustrative. Platinum ++ billing is simulated; no payments are collected.

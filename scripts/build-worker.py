@@ -6,9 +6,11 @@ assets={}
 for file in sorted(dist.rglob('*')):
  if not file.is_file() or file.relative_to(dist).parts[0] in ['server','.openai']:continue
  name=file.relative_to(dist).as_posix()
- mime={'.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.html':'text/html; charset=utf-8','.webmanifest':'application/manifest+json'}.get(file.suffix,mimetypes.guess_type(str(file))[0] or 'application/octet-stream')
+ mime={'.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.html':'text/html; charset=utf-8','.webmanifest':'application/manifest+json','.webp':'image/webp'}.get(file.suffix,mimetypes.guess_type(str(file))[0] or 'application/octet-stream')
  assets['/'+name]={'type':mime,'body':base64.b64encode(file.read_bytes()).decode()}
 source=(root/'worker/index.js').read_text(encoding='utf-8').replace('/* STATIC_ASSETS */ {}',json.dumps(assets,separators=(',',':')))
+catalog=json.loads((root/'data/food-catalog.json').read_text(encoding='utf-8'))
+source=(root/'worker/openai.js').read_text(encoding='utf-8').replace('/* FOOD_CATALOG */ []',json.dumps(catalog,separators=(',',':')))+'\n'+source
 (dist/'server').mkdir(exist_ok=True)
 (dist/'server/index.js').write_text(source,encoding='utf-8')
 (dist/'.openai').mkdir(exist_ok=True)
