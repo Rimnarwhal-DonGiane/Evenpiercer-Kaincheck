@@ -18,3 +18,9 @@ On the app welcome screen, choose **Continue demo as guest** to try it without a
 `project-files/` is a local organization folder, excluded from Git and from the hosted app. Original working copies have been preserved. Use the hosted app for the latest demo; archived HTML predates the current features.
 
 Changes to GitHub source do not automatically update the hosted site. Follow the existing Sites publication workflow when updating it.
+
+## Default workspace
+
+This repository is the default folder for all future KainCheck updates. See `AGENTS.md`. Run development commands from this folder. Verification screenshots and reports are written to `project-files/verification/current/`.
+
+The previous `ChatGPT/Kaincheck/mobile-app` copy is retained only as a managed deployment staging mirror. Edit and test this repository first, then synchronize the verified source when publishing.
