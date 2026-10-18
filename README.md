@@ -23,7 +23,7 @@ KainCheck is a mobile wellness app prototype with Filipino food logging, flexibl
 
 - Appearance controls: six themes, Andy/Terraria and VCR/Earthmover pairings, Bebas Neue, EVA Matisse, background/accent colors, light/dark panels, uploaded backgrounds, picture dimming and panel opacity. Open You → Appearance & themes.
 
-- Vibe Mode animal reactions: 18 curated user-supplied pictures in a Daily Vibe card, a browsable gallery and opt-in lighthearted coach replies. Images are hidden when Vibe Mode is off; medical/nutrition cautions and failed replies do not receive chat reaction images.
+- Vibe Mode animal reactions: 19 curated user-supplied pictures in a Daily Vibe card, a browsable gallery and opt-in lighthearted coach replies. Images are hidden when Vibe Mode is off; medical cautions and failed replies do not receive chat reaction images; casual food banter may include a reaction beside factual food guidance.
 
 ## Run locally
 
@@ -72,3 +72,5 @@ Existing local demo accounts are not converted to Supabase accounts. Your first 
 See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for the applied migration, dashboard settings and Google provider activation and remaining live consent verification. The existing owner-private Site access gate is separate from Supabase login. Other people cannot open this Site until its hosting audience is explicitly changed.
 
 Nutrition uses the exact selected reference variant where available; missing values stay unknown. Photos cannot measure nutrient composition. Prices, weekly history and calorie targets elsewhere in this prototype remain illustrative. Platinum ++ billing is simulated; no payments are collected.
+
+Vibe Mode uses contextual brainrot and clearly signposted sarcasm. Casual “healthiest food” hype can show the user-supplied glam pigeon; the coach immediately gives the factual answer in the same message. Personal health risks and food safety questions use a serious tone.
