@@ -21,6 +21,8 @@ KainCheck is a mobile wellness app prototype with Filipino food logging, flexibl
 - Responsive desktop dashboard, sidebar navigation, multi-column food library and expanded coach workspace.
 - Pantry and budget planning with your coach, editable recipes (including sauces and portions), shopping lists with entered costs, food preferences/allergies, actual seven-day activity reviews, and opt-in editable coach notes.
 
+- Appearance controls: six themes, Andy/Terraria and VCR/Earthmover pairings, Bebas Neue, EVA Matisse, background/accent colors, light/dark panels, uploaded backgrounds, picture dimming and panel opacity. Open You → Appearance & themes.
+
 ## Run locally
 
 Serve the editable `dist/` files:
