@@ -49,7 +49,7 @@ function updateSecureProviderUi(){
  const tokens=$('#ai-max-tokens');tokens.min=openai?'16':'1';tokens.max=openai?'1400':secure?'1024':'32768';tokens.value=Math.max(Number(tokens.min),Math.min(Number(tokens.max),Number(tokens.value)||500));
  $('#ai-repetition-penalty').min=secure?'1':'0';$('#ai-top-k').min=secure?'1':'0';$('#ai-top-k').max=secure?'100':'1000';
  if(openai){$('#ai-base-url').value='';$('#ai-model').value='';$('#ai-key').value='';draftApiKey='';}
- if(secure)populatePawanKey();
+
 }
 function installPersonalization(){Object.assign(actions,{'coach-hub':coachHub,'edit-profile':openUserProfile,'coach-library':coachLibrary,'choose-luna':chooseLuna,'new-custom-character':newCustomCharacter,'remove-user-avatar':()=>{refreshUserProfileDraft();userProfileDraft.avatarImage='';$('#user-avatar-preview').innerHTML=userAvatar(userProfileDraft);$('[data-action="remove-user-avatar"]').hidden=true;}});
  document.addEventListener('click',e=>{const b=e.target.closest('button[data-builtin-coach]');if(b)chooseBuiltinCoach(b.dataset.builtinCoach);const custom=e.target.closest('button[data-custom-character]');if(custom)chooseCustomCharacter(custom.dataset.customCharacter);const remove=e.target.closest('button[data-delete-coach]');if(remove)confirmCustomCoachDeletion(remove.dataset.deleteCoach);const confirmed=e.target.closest('button[data-confirm-delete-coach]');if(confirmed)deleteCustomCoach(confirmed.dataset.confirmDeleteCoach);});

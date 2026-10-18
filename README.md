@@ -3,7 +3,7 @@
 KainCheck is a mobile wellness app prototype with Filipino food logging, flexible movement plans, photo food checking, and customizable AI coaches.
 
 - Source: https://github.com/Rimnarwhal-DonGiane/Evenpiercer-Kaincheck
-- Hosted app: https://kaincheck-mobile-demo-ginoki.snowydrake.chatgpt.site/
+- Public hosted app (no ChatGPT sign-in): https://kaincheck-mobile-demo-ginoki.snowydrake.chatgpt.site/
 - AI and food update: [OpenAI & food checks](AI_AND_FOOD_SETUP.md)
 - Backend setup: [Connect Supabase](SUPABASE_SETUP.md)
 
@@ -55,7 +55,7 @@ GitHub stores the project source. Publishing a GitHub commit does not automatica
 
 Built-in coaches use the private OpenAI endpoint with a shared hosted key; Offline demo is an explicit alternative. Custom AI uses the configured chat-completions provider. The Pawan preset uses `https://api.pawan.krd/v1/chat/completions` and `pkrd/cosmosrp-2.1`.
 
-The existing owner-private hosted app keeps its configured Pawan key in the runtime secret `PKRD_API_KEY`. At the owner's request, its same-origin, non-cacheable configuration endpoint fills a masked password field, and the browser sends requests directly to Pawan. The real key is not in this repository, browser profile storage, the service-worker cache or the offline export. User-entered keys stay in tab memory. Keep the hosting access boundary intact when changing this behavior.
+The public hosted app keeps its configured Pawan key in the runtime secret `PKRD_API_KEY`. Leave the Pawan key field blank to use KainCheck’s same-origin server proxy. Hosted keys are never returned to browser clients. User-entered keys stay in tab memory and are sent directly to the selected provider.
 
 Live replies depend on the provider's access rules, account status, model support, CORS configuration and usage limits. Photo recognition needs an image-capable model. Photos stay in memory and are discarded after logging.
 
@@ -74,3 +74,7 @@ See [SUPABASE_SETUP.md](SUPABASE_SETUP.md) for the applied migration, dashboard 
 Nutrition uses the exact selected reference variant where available; missing values stay unknown. Photos cannot measure nutrient composition. Prices, weekly history and calorie targets elsewhere in this prototype remain illustrative. Platinum ++ billing is simulated; no payments are collected.
 
 Vibe Mode uses contextual brainrot and clearly signposted sarcasm. Casual “healthiest food” hype can show the user-supplied glam pigeon; the coach immediately gives the factual answer in the same message. Personal health risks and food safety questions use a serious tone.
+
+## Windows launcher and project files
+
+Double-click `Launch_KainCheck.bat` to open the hosted app in your default browser. See `START_HERE.md` for the local document and presentation folder layout. `project-files/` contains local copies of deliverables and QA records and is excluded from Git.

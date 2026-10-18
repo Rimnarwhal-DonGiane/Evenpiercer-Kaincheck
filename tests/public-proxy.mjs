@@ -1,0 +1,8 @@
+import assert from 'node:assert/strict';import {readFile}from'node:fs/promises';
+const source=await readFile(new URL('../dist/server/index.js',import.meta.url),'utf8'),{handlePkrd}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const origin='https://kaincheck.example',key='hosted-test-key-not-for-browser',env={PKRD_API_KEY:key};
+for(const method of ['GET','POST']){const r=await handlePkrd(new Request(origin+'/api/pkrd/client-connection',{method,headers:{Origin:origin}}),env);assert.equal(r.status,410);assert(!(await r.text()).includes(key));}
+const make=originHeader=>new Request(origin+'/api/pkrd/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json',...(originHeader?{Origin:originHeader}:{})},body:JSON.stringify({model:'pkrd/cosmosrp-2.1',messages:[{role:'user',content:'Hello'}],max_tokens:64})});
+for(const header of [null,'https://elsewhere.example']){assert.equal((await handlePkrd(make(header),env)).status,403);}
+let called=false;const r=await handlePkrd(make(origin),env,async(url,options)=>{called=true;assert.equal(url,'https://api.pawan.krd/v1/chat/completions');assert.equal(options.headers.Authorization,'Bearer '+key);assert.equal(JSON.parse(options.body).max_tokens,64);return Response.json({choices:[{message:{content:'Connected'}}]});});assert(called);assert.equal(r.status,200);const response=await r.text();assert(!response.includes(key));assert(response.includes('Connected'));
+console.log('Public proxy: hosted keys never returned, cross-origin POST blocked, server-only provider authorization and generation passed.');

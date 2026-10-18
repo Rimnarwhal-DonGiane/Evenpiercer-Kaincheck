@@ -20,3 +20,6 @@ dist/.openai/
 *.key
 
 supabase/.temp/
+
+# Local academic deliverables and verification records
+project-files/

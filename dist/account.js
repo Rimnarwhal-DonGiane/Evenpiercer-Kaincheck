@@ -55,7 +55,7 @@ async function signInWithGoogle(){
  }catch(e){if(operation===accountOperation)showAccountError(e.message||'Google sign-in did not complete. Try again.');}
  finally{if(operation===accountOperation){accountBusy=false;for(const b of buttons){b.disabled=false;b.removeAttribute('aria-busy');}}}
 }
-function cancelAccountWork(){resetEpoch++;activeChatController?.abort();activeChatController=null;chatBusy=false;disposeFoodScan();connectionKeys.clear();coachSettingsDrafts.clear();configuredPawanKeyPromise=null;draftApiKey='';settingsDraft=null;closeModal();}
+function cancelAccountWork(){resetEpoch++;activeChatController?.abort();activeChatController=null;chatBusy=false;disposeFoodScan();connectionKeys.clear();coachSettingsDrafts.clear();draftApiKey='';settingsDraft=null;closeModal();}
 function showAccountMode(mode){accountOperation++;accountBusy=false;accountMode=mode;cancelAccountWork();renderAccountGate();}
 function restoreAccountState(saved,username){state=saved?.version===1?{...initial(),...saved,coach:{...initial().coach,...saved.coach}}:initial();if(!Array.isArray(state.meals)||!Array.isArray(state.messages)||!Array.isArray(state.plan))state=initial();if(username)state.name=username;initializeCoachProfiles();}
 function enterGuestSession(){if(cloudLoading||accountBooting)return;accountSession={guest:true};localStorage.setItem(GUEST_SESSION,'true');accountOperation++;cancelAccountWork();restoreAccountState(loadKaincheckState());save();screen='today';render();toast('Explore at your own pace.');}
