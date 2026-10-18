@@ -78,3 +78,5 @@ Vibe Mode uses contextual brainrot and clearly signposted sarcasm. Casual “hea
 ## Windows launcher and project files
 
 Double-click `Launch_KainCheck.bat` to open the hosted app in your default browser. See `START_HERE.md` for the local document and presentation folder layout. `project-files/` contains local copies of deliverables and QA records and is excluded from Git.
+
+Vibe chat reactions recognize ordinary messages about budget/plans, cooking/food logs, movement, water, rest, small wins and encouragement. Matching photos rotate through the active coach’s conversation instead of repeating a daily fixed choice. Coach → Reaction ideas offers draft example prompts. All 19 reactions are reachable through these topics, including the existing food-hype pigeon.
