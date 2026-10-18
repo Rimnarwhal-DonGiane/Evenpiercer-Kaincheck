@@ -23,7 +23,7 @@ KainCheck is a mobile wellness app prototype with Filipino food logging, flexibl
 
 - Appearance controls: six themes, Andy/Terraria and VCR/Earthmover pairings, Bebas Neue, EVA Matisse, background/accent colors, light/dark panels, uploaded backgrounds, picture dimming and panel opacity. Open You → Appearance & themes.
 
-- Vibe Mode animal reactions: 19 curated user-supplied pictures in a Daily Vibe card, a browsable gallery and opt-in lighthearted coach replies. Images are hidden when Vibe Mode is off; medical cautions and failed replies do not receive chat reaction images; casual food banter may include a reaction beside factual food guidance.
+- Vibe Mode animal reactions: 19 curated user-supplied pictures with original, image-specific brainrot captions in a Daily Vibe card, a browsable gallery and opt-in lighthearted coach replies. Images are hidden when Vibe Mode is off; medical cautions and failed replies do not receive chat reaction images; casual food banter may include a reaction beside factual food guidance.
 
 ## Run locally
 
