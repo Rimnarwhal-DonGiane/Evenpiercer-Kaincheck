@@ -12,11 +12,14 @@ KainCheck is a mobile wellness app prototype with Filipino food logging, flexibl
 - Username, profile picture, gender, pronouns and bio.
 - Meal logging, editable portions, nutrient estimates, water and movement logs, daily plans, and an All around movement option.
 - ChatGPT food-photo recognition, source-aware portion review, sodium and three-serving cautions, custom vision providers, and a clearly labeled preset demo.
-- Six built-in coaches share server-side OpenAI coaching and keep separate personalities/chats; each can switch to Offline demo. Custom characters keep their own provider settings.
+- Six built-in coaches share server-side OpenAI coaching and keep separate personalities/chats; each can switch to Offline demo. Custom characters can select the shared ChatGPT connection or retain their own proxy/provider settings.
 - Character prompts, biography, appearance, avatar uploads, model/proxy settings, sampling controls, and a default 16K estimated context budget.
 - Refresh the latest AI response or retry a failed reply without duplicating the user's message.
 - Google registration/sign-in through Supabase using PKCE, persistent sessions, and logout. The app flow is implemented; live Google login awaits Google OAuth credentials in the Supabase provider panel. Profiles, food logs, plans, coach appearances and conversations sync to the signed-in account. Guest browsing remains local.
 - Android/iPhone home-screen installation with a manifest, icons and a service worker. Only static app files are cached.
+
+- Responsive desktop dashboard, sidebar navigation, multi-column food library and expanded coach workspace.
+- Pantry and budget planning with your coach, editable recipes (including sauces and portions), shopping lists with entered costs, food preferences/allergies, actual seven-day activity reviews, and opt-in editable coach notes.
 
 ## Run locally
 

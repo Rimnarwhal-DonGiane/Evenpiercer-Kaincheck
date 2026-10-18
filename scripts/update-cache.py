@@ -1,7 +1,7 @@
 from pathlib import Path
 import json,hashlib,re
 root=Path(__file__).resolve().parents[1];dist=root/'dist';p=dist/'sw.js';s=p.read_text(encoding='utf-8')
-extras=['food-catalog.js','nutrition.js','openai-coach.js']+['food-photos/'+f.name for f in sorted((dist/'food-photos').glob('*.webp'))]
+extras=['food-catalog.js','nutrition.js','openai-coach.js','desktop.js','desktop.css','wellness.js','wellness.css']+['food-photos/'+f.name for f in sorted((dist/'food-photos').glob('*.webp'))]
 match=re.search(r'const SHELL_FILES=(\[.*?\]);',s)
 paths=json.loads(match.group(1).replace("'",'"'))
 for item in extras:

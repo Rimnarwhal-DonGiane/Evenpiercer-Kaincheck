@@ -1,6 +1,6 @@
 # OpenAI coaching and Filipino food checks
 
-All six built-in KainCheck coaches use the shared server-side OpenAI Responses API, retaining their separate personalities, preferences and chat histories. Users can explicitly choose Offline demo in each built-in coach's settings. Custom/proxy characters retain their existing provider settings.
+All six built-in KainCheck coaches use the shared server-side OpenAI Responses API, retaining their separate personalities, preferences and chat histories. Users can explicitly choose Offline demo in each built-in coach's settings. Custom/proxy characters can also choose **ChatGPT · OpenAI (KainCheck)** under Provider or proxy. The server uses their bounded character prompt, written appearance profile and selected response token limit; avatar images are not sent to OpenAI, and the server API key is never returned to the browser. Existing proxy providers retain their settings. This shared connection supports Max response tokens (16–1,400) and the client’s estimated Context size; unsupported sampling controls are explicitly disabled.
 
 The default model is `gpt-6-luna`; `OPENAI_MODEL` can override it at deployment. The hosted `OPENAI_API_KEY` is a secret held by Sites, never returned by the new OpenAI endpoints or committed to this repository. Keep the existing owner-private Site access boundary: the shared paid API routes rely on it. A public deployment needs an appropriate authenticated quota/rate-limit design first. API billing is separate from a ChatGPT subscription. Requests use `store: false` and a bounded message history; see OpenAI's API data policies for provider retention.
 
@@ -30,3 +30,11 @@ node scripts/preview.mjs
 `tests/openai-worker.mjs` uses mocked upstream OpenAI responses. `tests/mobile-food-ai.cjs` exercises the browser's catalog, photos, sodium arithmetic, null handling, all six default coach routes, explicit offline mode, photo review/confirmation and mobile sizes using mocked AI responses. Live API checks must be recorded separately; passing mocked tests does not establish key validity, available model access or funded quota.
 
 The source is in this Codex project's `mobile-app/` folder. Existing earlier mockup images remain in the project root.
+
+## Everyday toolkit and desktop
+
+The same URL adapts at 900 px to a desktop sidebar, dashboard panels, food cards, larger dialogs and coach workspace. Smaller screens retain the phone layout. Pantry, recipes, shopping items, food preferences and explicit memory notes live under `state.wellness` and use the existing account JSON sync; guests retain their local data. No new database tables are needed.
+
+Pantry meal planning routes through the active coach with budget, pantry and food preferences; prices are estimates. Recipe estimates sum matching per-100-g catalog/label ingredients and divide by portions; missing values stay null. Enter sauces or seasonings manually when no matching reference exists. Recipes can be saved, edited, logged and converted to editable shopping entries; costs are entered by the user and unknown prices remain incomplete. Allergies guide coaching but do not certify catalog/photo safety.
+
+The weekly review uses only dated food, movement and water records from the last seven local calendar days. Old undated demo records are excluded. Memory is a manually edited list of up to 12 notes; sharing is disabled by default. Disable or clear notes at any time. Recent chat history still provides context, and clearing saved notes cannot erase messages previously sent to a provider.
