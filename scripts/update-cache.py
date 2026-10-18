@@ -1,7 +1,7 @@
 from pathlib import Path
 import json,hashlib,re
 root=Path(__file__).resolve().parents[1];dist=root/'dist';p=dist/'sw.js';s=p.read_text(encoding='utf-8')
-extras=['food-catalog.js','nutrition.js','openai-coach.js','desktop.js','desktop.css','wellness.js','wellness.css','appearance.js','appearance.css']+['theme-assets/'+f.relative_to(dist/'theme-assets').as_posix() for f in sorted((dist/'theme-assets').rglob('*')) if f.is_file() and f.suffix in ['.webp','.woff2']]+['food-photos/'+f.name for f in sorted((dist/'food-photos').glob('*.webp'))]
+extras=['food-catalog.js','nutrition.js','openai-coach.js','desktop.js','desktop.css','wellness.js','wellness.css','appearance.js','appearance.css','vibe-data.js','vibe-images.js','vibe-images.css']+['vibe-photos/'+f.name for f in sorted((dist/'vibe-photos').glob('*.webp'))]+['theme-assets/'+f.relative_to(dist/'theme-assets').as_posix() for f in sorted((dist/'theme-assets').rglob('*')) if f.is_file() and f.suffix in ['.webp','.woff2']]+['food-photos/'+f.name for f in sorted((dist/'food-photos').glob('*.webp'))]
 match=re.search(r'const SHELL_FILES=(\[.*?\]);',s)
 paths=json.loads(match.group(1).replace("'",'"'))
 for item in extras:
